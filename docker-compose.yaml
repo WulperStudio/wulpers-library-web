@@ -1,0 +1,11 @@
+version: '3'
+
+services:
+  storybook:
+    build: .
+    volumes:
+      - ./:/app/
+    ports:
+      - 9009:9009
+    command: npm run start
+

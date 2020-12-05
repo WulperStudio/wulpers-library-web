@@ -1,0 +1,1 @@
+"use strict";Object.defineProperty(exports,"__esModule",{value:!0}),exports.state=exports.text=exports.backgrounds=void 0;var backgrounds={primary:"#613EEA",secondary:"#B8ED56",grey:"#B2BEDA"};exports.backgrounds=backgrounds;var text={primary:"#223263"};exports.text=text;var state={success:"#53D1B6",error:"#FB7181",disabled:"#ECECFB"};exports.state=state;

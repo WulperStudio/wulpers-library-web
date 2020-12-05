@@ -1,0 +1,1 @@
+"use strict";Object.defineProperty(exports,"__esModule",{value:!0}),exports.default=void 0;var _styles=require("@material-ui/core/styles"),useStyles=(0,_styles.makeStyles)(function(){return{chipAvatar:{background:"transparent"}}}),_default=useStyles;exports.default=_default;

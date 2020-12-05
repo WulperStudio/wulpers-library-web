@@ -1,0 +1,64 @@
+{
+  "name": "@wulpers-ui/core",
+  "private": true,
+  "description": "wulpers-library-web",
+  "version": "0.0.1-alpha",
+  "license": "0BSD",
+  "main": "dist/index.js",
+  "author": "Wulpers Co.",
+  "scripts": {
+    "start": "start-storybook -p 9009 -s static",
+    "build": "npm-run-all _clear-dist _build-components _build-utils _cp-assets _cp-fonts",
+    "_build-components": "babel ./src/components/ --ignore stories --out-dir ./dist/components --extensions '.tsx'",
+    "_build-utils": "babel ./src/utils --ignore stories --out-dir ./dist/utils --extensions '.tsx'",
+    "_cp-assets": "cp -R ./src/assets ./dist",
+    "_cp-fonts": "cp -R ./static ./dist",
+    "_clear-dist": "rm -rf dist && mkdirp ./dist",
+    "build-storybook": "build-storybook -s static",
+    "format": "prettier --write \"**/*.{js,jsx,ts,tsx,json,md}\"",
+    "test": "echo \"Write tests!\" && exit 1"
+  },
+  "dependencies": {
+    "@material-ui/core": "4.11.2",
+    "@material-ui/icons": "4.11.2",
+    "@material-ui/lab": "4.0.0-alpha.57",
+    "@material-ui/styles": "4.11.2",
+    "react": "17.0.1",
+    "react-dom": "17.0.1",
+    "react-scripts": "4.0.1",
+    "react-string-replace": "0.4.4"
+  },
+  "devDependencies": {
+    "@babel/cli": "7.12.8",
+    "@babel/core": "7.12.9",
+    "@babel/preset-env": "7.12.7",
+    "@babel/preset-react": "7.12.7",
+    "@babel/preset-typescript": "^7.12.7",
+    "@storybook/addon-a11y": "6.1.9",
+    "@storybook/addon-actions": "6.1.9",
+    "@storybook/addon-contexts": "5.3.21",
+    "@storybook/addon-docs": "6.1.9",
+    "@storybook/addon-knobs": "6.1.9",
+    "@storybook/addon-links": "6.1.9",
+    "@storybook/addon-viewport": "6.1.9",
+    "@storybook/addons": "6.1.9",
+    "@storybook/client-api": "6.1.9",
+    "@storybook/preset-create-react-app": "3.1.5",
+    "@storybook/react": "6.1.9",
+    "@types/react": "17.0.0",
+    "@types/react-dom": "17.0.0",
+    "babel-loader": "8.2.2",
+    "babel-preset-minify": "0.5.1",
+    "npm-run-all": "^4.1.5",
+    "prettier": "2.2.1",
+    "typescript": "4.1.2"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/WulperStudio/wulpers-library-web.git"
+  },
+  "bugs": {
+    "url": "https://github.com/WulperStudio/wulpers-library-web/issues"
+  },
+  "homepage": "https://github.com/WulperStudio/wulpers-library-web#readme"
+}

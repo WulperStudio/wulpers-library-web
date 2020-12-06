@@ -27,6 +27,7 @@ export interface TableHeadProps {
   orderBy: string;
   rowCount: number;
   headCells: HeadCell[];
+  style: any
 }
 
 export type TableProps = {

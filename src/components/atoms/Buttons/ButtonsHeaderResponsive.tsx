@@ -5,7 +5,7 @@ import Hidden from "@material-ui/core/Hidden"
 import useStyles from "./ButtonsHeaderResponsive.styles"
 
 interface Props extends ButtonProps {
-    icon: ReactChild;
+  icon: ReactChild;
 }
 
 export default function ButtonsHeaderResponsive({ variant, title, disabled, icon, color }: Props) {

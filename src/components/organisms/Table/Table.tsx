@@ -68,12 +68,13 @@ export default function EnhancedTable({ headCells, dataRows, formatRows }: Table
 
   return <div className={classes.root}>
     <Paper className={classes.paper}>
-      <TableContainer>
+      <TableContainer className={classes.tableContainer}>
         <Table
           className={classes.table}
           aria-labelledby="tableTitle"
           size="medium"
-          aria-label="enhanced table"
+          aria-label="sticky table"
+          stickyHeader
         >
 
           <TableHead

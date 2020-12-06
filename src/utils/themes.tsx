@@ -1,4 +1,4 @@
-import { createMuiTheme } from "@material-ui/core"  // @ts-ignore
+import {createMuiTheme} from "@material-ui/core"  // @ts-ignore
 import {
   poppinsRegular,
   poppinsItalic,
@@ -7,9 +7,19 @@ import {
   poppinsLight,
   poppinsLightItalic
 } from "./typography"
-import { backgrounds, text } from "./colors"
+import {backgrounds, text} from "./colors"
+
+
 
 export const defaultTheme = createMuiTheme({
+  overrides: {// @ts-ignore
+    MuiDropzoneSnackbar: {
+      errorAlert: {
+        backgroundColor: "#AFA",
+        color: "#000"
+      }
+    }
+  },
   typography: {
     fontFamily: "Poppins"
   },
@@ -23,7 +33,7 @@ export const defaultTheme = createMuiTheme({
     },
     text: {
       primary: text.primary
-    }
+    },
   }
 })
 

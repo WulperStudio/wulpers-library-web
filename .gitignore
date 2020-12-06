@@ -70,3 +70,10 @@ yarn-error.log
 
 # WebStrom
 .idea/
+
+# Build npm
+dist/
+
+# lock
+yarn.lock
+package-lock.json

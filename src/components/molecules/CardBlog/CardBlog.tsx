@@ -1,29 +1,43 @@
 import React from "react"
-import { makeStyles } from "@material-ui/core/styles"
+import {makeStyles} from "@material-ui/core/styles"
 import Card from "@material-ui/core/Card"
 import CardActionArea from "@material-ui/core/CardActionArea"
 import CardContent from "@material-ui/core/CardContent"
 import CardMedia from "@material-ui/core/CardMedia"
 import Typography from "@material-ui/core/Typography"
-import Grid, { GridProps } from "@material-ui/core/Grid"
+import Grid, {GridProps} from "@material-ui/core/Grid"
+import ButtonBase from '@material-ui/core/ButtonBase';
 
 const useStyles = makeStyles({
   root: {},
   cardMedia: {
     borderRadius: "10px",
     maxHeight: "275px"
+  },
+  cardAction: {
+    textAlign: 'initial'
   }
 })
 
-type Props = {
-  variant?: "type1" | "type2" | "type3"
+export type CardBlogData = {
+  title: string,
+  preTitle: string,
+  content: string,
+  image: string,
+}
+
+export type CardBlogProps = {
+  data: CardBlogData,
+  variant?: "type1" | "type2" | "type3",
+  onClick?: React.MouseEventHandler<HTMLButtonElement>
 }
 
 CardBlog.defaultProps = {
-  variant: "type1"
+  variant: "type1",
+  onClick: () => false
 }
 
-export default function CardBlog({ variant }: Props) {
+export default function CardBlog({variant, data, onClick}: CardBlogProps) {
   const classes = useStyles()
   // @ts-ignore
   let xs: GridProps.xs = 12
@@ -41,38 +55,35 @@ export default function CardBlog({ variant }: Props) {
 
   return (
     <Card className={classes.root}>
-      <CardActionArea>
-        <Grid
-          container
-          direction={direction}
-          justify="center"
-          alignItems="stretch"
-        >
-          <Grid item xs={xs}>
-            <CardContent>
-              <CardMedia
-                component="img"
-                alt="Contemplative Reptile"
-                image="/card-image.png"
-                title="Contemplative Reptile"
-                className={classes.cardMedia}
-              />
-            </CardContent>
+      <ButtonBase onClick={onClick} className={classes.cardAction}>
+        <CardActionArea>
+          <Grid
+            container
+            direction={direction}
+            justify="center"
+            alignItems="stretch"
+          >
+            <Grid item xs={xs}>
+              <CardContent>
+                <CardMedia
+                  component="img"
+                  alt="Contemplative Reptile"
+                  image={data.image}
+                  title="Contemplative Reptile"
+                  className={classes.cardMedia}
+                />
+              </CardContent>
+            </Grid>
+            <Grid item xs={xs}>
+              <CardContent>
+                <span>{data.preTitle}</span>
+                <Typography gutterBottom variant="h5" component="h2">{data.title}</Typography>
+                <p>{data.content}</p>
+              </CardContent>
+            </Grid>
           </Grid>
-          <Grid item xs={xs}>
-            <CardContent>
-              <span>MEDIA</span>
-              <Typography gutterBottom variant="h5" component="h2">
-                Lizard
-              </Typography>
-              <p>
-                This is the second part of the SMM starter pack series of articles. If you made it this far, you must be
-                willing to learn about promoting business through social media
-              </p>
-            </CardContent>
-          </Grid>
-        </Grid>
-      </CardActionArea>
+        </CardActionArea>
+      </ButtonBase>
     </Card>
   )
 

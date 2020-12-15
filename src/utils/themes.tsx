@@ -1,4 +1,4 @@
-import {createMuiTheme} from "@material-ui/core"  // @ts-ignore
+import {createMuiTheme} from '@material-ui/core/styles';
 import {
   poppinsRegular,
   poppinsItalic,
@@ -9,20 +9,21 @@ import {
 } from "./typography"
 import {backgrounds, text} from "./colors"
 
-
-
-export const defaultTheme = createMuiTheme({
-  overrides: {// @ts-ignore
-    MuiDropzoneSnackbar: {
-      errorAlert: {
-        backgroundColor: "#AFA",
-        color: "#000"
-      }
-    }
-  },
+const fontsPoppins = {
   typography: {
     fontFamily: "Poppins"
   },
+  overrides: {
+    MuiCssBaseline: {
+      '@global': {
+        '@font-face': [poppinsRegular, poppinsItalic, poppinsBold,
+          poppinsBoldItalic, poppinsLight, poppinsLightItalic],
+      },
+    }
+  }
+}
+export const defaultTheme = createMuiTheme({
+  ...fontsPoppins,
   palette: {
     primary: {
       main: backgrounds.primary,
@@ -33,7 +34,26 @@ export const defaultTheme = createMuiTheme({
     },
     text: {
       primary: text.primary
+    }
+  }
+})
+
+export const BlogVariant1 = createMuiTheme({
+  ...fontsPoppins,
+  palette: {
+    background: {
+      default: "#FDFDFD"
     },
+    text: {
+      primary: "#374A59"
+    },
+    primary: {
+      main: backgrounds.primary,
+    },
+    secondary: {
+      main: backgrounds.secondary,
+      contrastText: '#FFF'
+    }
   }
 })
 

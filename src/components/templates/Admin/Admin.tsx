@@ -4,6 +4,7 @@ import { defaultTheme } from "../../../utils"
 import { ThemeProvider } from "@material-ui/core/styles"
 import CssBaseline from "@material-ui/core/CssBaseline"
 import useStyles from "./Admin.styles"
+import NavBar from "../../molecules/NavBar/NavBar";
 
 type Props = {
   sidebar?: boolean
@@ -18,10 +19,13 @@ export default function Admin({ children, sidebar }: Props): ReactElement {
   const classes = useStyles()
   return (
     <ThemeProvider theme={defaultTheme}>
-
+      <CssBaseline />
       <div className={classes.container}>
         {sidebar && <SideBar/>}
-        <div className={classes.content}>{children}</div>
+        <div className={classes.content}>
+          <NavBar title='Analyzing path of import & validation' />
+          {children}
+        </div>
       </div>
     </ThemeProvider>
   )

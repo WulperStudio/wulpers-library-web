@@ -71,5 +71,11 @@ yarn-error.log
 # WebStrom
 .idea/
 
-# build babel
+# build
 dist/
+storybook-static/
+
+# lock
+yarn.lock
+package-lock.json
+

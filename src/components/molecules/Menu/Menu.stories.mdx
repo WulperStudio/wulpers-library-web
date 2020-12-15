@@ -1,0 +1,30 @@
+import {Meta, Story, Preview} from "@storybook/addon-docs/blocks"
+import {select} from "@storybook/addon-knobs"
+import {action} from '@storybook/addon-actions'
+import Menu from "./Menu"
+import Fab from "@material-ui/core/Fab"
+import EditIcon from "@material-ui/icons/Edit"
+
+<Meta title="Molecules/Menu"/>
+
+# Menu
+
+Description Menu
+
+## SignUp Default
+<Preview withToolbar>
+  <Story name="Default">
+    <Menu
+      button={
+        <Fab
+          color="inherit"
+          size="medium"
+          aria-label="edit"
+        >
+          <EditIcon/>
+        </Fab>
+      }
+      items={["Sent mail", "Drafts", "Inbox"]}
+    />
+  </Story>
+</Preview>

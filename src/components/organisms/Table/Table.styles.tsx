@@ -28,7 +28,10 @@ const useStyles = makeStyles((theme: Theme) =>
       "& th": {
         color: "#000"
       }
-    }
+    },
+    tableContainer: {
+      maxHeight: "85vh",
+    },
   })
 )
 

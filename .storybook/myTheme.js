@@ -32,6 +32,6 @@ export default create({
   inputBorderRadius: 4,*/
 
   brandTitle: "Wulpers Library Web",
-  //brandUrl: "https://example.com",
-  //brandImage: "https://placehold.it/350x150"
+  brandUrl: "https://www.wulpers.com/",
+  brandImage: "/logo.png"
 })

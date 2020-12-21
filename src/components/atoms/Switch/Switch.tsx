@@ -5,7 +5,7 @@ import { makeStyles, Theme } from "@material-ui/core/styles"
 import Table from "../../icons/Table"
 import Group from "../../icons/Group"
 
-export default function ToggleButtonSizes() {
+export default function ToggleButtonSizes({onChange}) {
   const useStyles = makeStyles((theme: Theme) => ({
     root: {
       top: "7px",
@@ -63,6 +63,7 @@ export default function ToggleButtonSizes() {
     newAlignment: string
   ) => {
     setAlignment(newAlignment)
+    onChange(newAlignment)
   }
 
   return (

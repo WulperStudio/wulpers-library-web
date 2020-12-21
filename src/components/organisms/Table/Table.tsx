@@ -5,11 +5,16 @@ import TableContainer from "@material-ui/core/TableContainer"
 import TablePagination from "@material-ui/core/TablePagination"
 import Paper from "@material-ui/core/Paper"
 import useStyles from "./Table.styles"
-import { DataRow, Order, TableProps, getComparator, stableSort } from "./Table.utils"
+import { Order, TableProps, getComparator, stableSort } from "./Table.utils"
 import TableHead from "../../molecules/TableHead/TableHead"
 import TableRow from "../../molecules/TableRow/TableRow"
 
-export default function EnhancedTable({ headCells, dataRows, formatRows }: TableProps) {
+EnhancedTable.defaultProps = {
+  selectable: true
+}
+
+//TODO: merge headCells and formatRows in formatTable and change dataRows by dataTable
+export default function EnhancedTable({ selectable, idTable, headCells, formatRows, dataRows }: TableProps) {
   const classes = useStyles()
   const [order, setOrder] = React.useState<Order>("asc")
   const [orderBy, setOrderBy] = React.useState("calories")
@@ -94,7 +99,7 @@ export default function EnhancedTable({ headCells, dataRows, formatRows }: Table
               .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
               .map((row: any, index: number) => {
                 // @ts-ignore
-                const dataRowKey = row[formatRows[0].key]
+                const dataRowKey = row[idTable]
                 return <TableRow
                   key={index.toString()}
                   isItemSelected={isSelected(dataRowKey)}

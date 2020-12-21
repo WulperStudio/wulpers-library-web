@@ -1,29 +1,28 @@
-import React, { ReactNode, ReactElement } from "react"
-import SideBar from "../../molecules/SideBar/SideBar"
-import { defaultTheme } from "../../../utils"
-import { ThemeProvider } from "@material-ui/core/styles"
+import React, {ReactNode, ReactElement} from "react"
+import SideBar, {sideBarConfigType} from "../../molecules/SideBar"
+import {defaultTheme} from "../../../utils"
+import {ThemeProvider} from "@material-ui/core/styles"
 import CssBaseline from "@material-ui/core/CssBaseline"
 import useStyles from "./Admin.styles"
-import NavBar from "../../molecules/NavBar/NavBar";
+import NavBar, {navBarConfigType} from "../../molecules/NavBar";
 
 type Props = {
-  sidebar?: boolean
-  children: ReactNode
+  title: string,
+  children: ReactNode,
+  sideBarConfig?: sideBarConfigType[],
+  navBarConfig?: navBarConfigType[]
+  buttonBackOnClick?: () => any
 }
 
-Admin.defaultProps = {
-  sidebar: true
-}
-
-export default function Admin({ children, sidebar }: Props): ReactElement {
+export default function AdminTheme({children, title, sideBarConfig, navBarConfig, buttonBackOnClick}: Props): ReactElement {
   const classes = useStyles()
   return (
     <ThemeProvider theme={defaultTheme}>
-      <CssBaseline />
+      <CssBaseline/>
       <div className={classes.container}>
-        {sidebar && <SideBar/>}
+        {sideBarConfig && <SideBar sideBarConfig={sideBarConfig}/>}
         <div className={classes.content}>
-          <NavBar title='Analyzing path of import & validation' />
+          <NavBar title={title} buttonBackOnclick={buttonBackOnClick} navBarConfig={navBarConfig}/>
           {children}
         </div>
       </div>

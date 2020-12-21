@@ -1,40 +1,68 @@
-import React, { ReactElement, ReactNode } from "react"
+import React, {ReactChild, ReactElement} from "react"
 import useStyles from "./NavBar.styles"
 import Fab from "@material-ui/core/Fab"
 import ArrowBackIcon from "@material-ui/icons/ArrowBack"
 import reactStringReplace from "react-string-replace"
+import Tooltip from "@material-ui/core/Tooltip"
+import Switch from "../../atoms/Switch"
+import Button from "@material-ui/core/Button"
 
-type Props = {
+export type navBarConfigType = {
   title: string,
-  showButtonBack?: boolean,
-  children?: ReactNode,
+  onClick?: (x: any) => any,
+  icon?: ReactChild,
+  type: "Fav" | "Switch" | "Button"
+}
+
+export type navBarProps = {
+  title: string,
+  buttonBackOnclick?: () => any,
+  navBarConfig?: navBarConfigType[]
 }
 NavBar.defaultProps = {
   showButtonBack: false
 }
 
-export default function NavBar({ children, title, showButtonBack }: Props): ReactElement {
+export default function NavBar({title, buttonBackOnclick, navBarConfig}: navBarProps): ReactElement {
   const classes = useStyles()
   let replacedTitle = reactStringReplace(title, /\*\*(.*)\*\*/g, (match: string, i: number) => (
-    <span className={classes.bold}>{match}</span>
+    <span key={match + i} className={classes.bold}>{match}</span>
   ))
   replacedTitle = reactStringReplace(replacedTitle, /\*\_(.*)\_\*/g, (match: string, i: number) => (
-    <b className={classes.boldUnderlined}>{match}</b>
+    <span key={match + i} className={classes.boldUnderlined}>{match}</span>
   ))
 
   return (
     <nav className={classes.navBar}>
       <h6 className={classes.title}>
-        {showButtonBack && (
-          <Fab color="inherit" aria-label="add" className={classes.buttonBack} size="medium">
+        {buttonBackOnclick && (
+          <Fab color="inherit" aria-label="add" className={classes.buttonBack} size="medium"
+               onClick={buttonBackOnclick}>
             <ArrowBackIcon/>
           </Fab>
         )}
         {replacedTitle}
       </h6>
-      {children && (
+      {navBarConfig && (
         <div className={classes.buttonsContainer}>
-          <>{children}</>
+          {navBarConfig.map(({title, onClick, icon, type}) => (
+            <Tooltip key={title} title={title} placement="bottom">
+              <>
+                {type === "Fav" && (
+                  <Fab color="inherit" className={classes.favNavBar} size="small"
+                       onClick={onClick}>
+                    <>{icon}</>
+                  </Fab>
+                )}
+                {type === "Switch" && (<Switch onChange={onClick}/>)}
+                {type === "Button" && (
+                  <Button variant="contained" color="primary" className={classes.buttonNavBar} onClick={onClick}>
+                    {title}
+                  </Button>
+                )}
+              </>
+            </Tooltip>
+          ))}
         </div>
       )}
     </nav>

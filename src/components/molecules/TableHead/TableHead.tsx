@@ -26,18 +26,18 @@ export default function EnhancedTableHead(props: TableHeadProps) {
         </TableCell>
         {headCells.map((headCell: HeadCell) => (
           <TableCell
-            key={headCell.id}
+            key={headCell.key}
             align={headCell.numeric ? "right" : "left"}
             padding={headCell.disablePadding ? "none" : "default"}
-            sortDirection={orderBy === headCell.id ? order : false}
+            sortDirection={orderBy === headCell.key ? order : false}
           >
             <TableSortLabel
-              active={orderBy === headCell.id}
-              direction={orderBy === headCell.id ? order : "asc"}
-              onClick={createSortHandler(headCell.id)}
+              active={orderBy === headCell.key}
+              direction={orderBy === headCell.key ? order : "asc"}
+              onClick={createSortHandler(headCell.key)}
             >
               {headCell.label}
-              {orderBy === headCell.id ? (
+              {orderBy === headCell.key ? (
                 <span className={classes.visuallyHidden}>
                   {order === "desc" ? "sorted descending" : "sorted ascending"}
                 </span>

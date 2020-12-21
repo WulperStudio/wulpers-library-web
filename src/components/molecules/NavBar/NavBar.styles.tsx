@@ -1,4 +1,5 @@
-import { makeStyles, Theme } from "@material-ui/core/styles"
+import {makeStyles, Theme} from "@material-ui/core/styles"
+import {backgrounds} from "../../../utils"
 
 const useStyles = makeStyles((theme: Theme) => ({
   navBar: {
@@ -26,12 +27,24 @@ const useStyles = makeStyles((theme: Theme) => ({
   buttonBack: {
     background: "none",
     border: "none",
-    boxShadow: "none",
     marginRight: "16px",
-    color: "#5F6062"
+    color: backgrounds.primary,
+    boxShadow: "0px 4px 10px 0px rgba(178, 190, 218, 0.5)",
+  },
+  favNavBar: {
+    background: "none",
+    border: "none",
+    color: backgrounds.primary,
+    boxShadow: "0px 4px 10px 0px rgba(178, 190, 218, 0.5)",
+    "& path": {
+      fill: backgrounds.primary
+    }
+  },
+  buttonNavBar: {
+    boxShadow: "0px 3px 5px 0px rgba(217, 217, 217, 1)",
   },
   buttonsContainer: {
-    "& .MuiButton-root": {
+    "& .MuiButtonBase-root, .MuiToggleButtonGroup-root": {
       marginLeft: "16px"
     }
   }

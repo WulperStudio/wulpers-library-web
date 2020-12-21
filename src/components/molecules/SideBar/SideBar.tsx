@@ -4,14 +4,20 @@ import Tooltip from "@material-ui/core/Tooltip"
 import clsx from "clsx"
 import useStyles from "./SideBar.styles"
 import Logo from "../../icons/Logo"
-import Lightning from "../../icons/Lightning"
-import User from "../../icons/User"
-import Talking from "../../icons/Talking"
-import Muscles from "../../icons/Muscles"
-import Headset from "../../icons/Headset"
-import Config from "../../icons/Config"
 
-export default function SideBar() {
+export type sideBarConfigType = {
+  title: string,
+  active: boolean,
+  onClick: () => any,
+  icon: React.ReactChild,
+  type: "primary" | "secondary"
+}
+
+export type SideBarProps = {
+  sideBarConfig: sideBarConfigType[]
+}
+
+export default function SideBar({sideBarConfig}: SideBarProps) {
   const classes = useStyles()
   return (
     <nav className={classes.sidebar}>
@@ -23,41 +29,28 @@ export default function SideBar() {
       </div>
 
       <div className={classes.menu}>
-
         <div>
-          <Tooltip title="Add" aria-label="add" placement="right">
-            <Fab color="primary" aria-label="add" className={classes.fab} size="medium" href="/">
-              <Lightning/>
-            </Fab>
-          </Tooltip>
-          <Tooltip title="Add" aria-label="add" placement="right">
-            <Fab color="primary" aria-label="add" className={classes.fab} size="medium">
-              <User/>
-            </Fab>
-          </Tooltip>
-          <Tooltip title="Add" aria-label="add" placement="right">
-            <Fab color="primary" aria-label="add" className={classes.fab} size="medium">
-              <Muscles/>
-            </Fab>
-          </Tooltip>
-          <Tooltip title="Add" aria-label="add" placement="right">
-            <Fab color="primary" aria-label="add" className={classes.fab} size="medium">
-              <Talking/>
-            </Fab>
-          </Tooltip>
+          {sideBarConfig
+            .filter(({type}: sideBarConfigType) => type === "primary")
+            .map(({title, icon, onClick, active}: sideBarConfigType) => (
+              <Tooltip key={title} title={title} placement="right">
+                <Fab color="primary" className={classes.fab} size="medium" onClick={onClick}>
+                  {icon}
+                </Fab>
+              </Tooltip>
+            ))}
         </div>
 
         <div>
-          <Tooltip title="Add" aria-label="add" placement="right">
-            <Fab color="primary" aria-label="add" className={classes.fab} size="medium">
-              <Headset/>
-            </Fab>
-          </Tooltip>
-          <Tooltip title="Add" aria-label="add" placement="right">
-            <Fab color="primary" aria-label="add" className={classes.fab} size="medium">
-              <Config/>
-            </Fab>
-          </Tooltip>
+          {sideBarConfig
+            .filter(({type}: sideBarConfigType) => type === "secondary")
+            .map(({title, icon, onClick, active}: sideBarConfigType) => (
+              <Tooltip key={title} title={title} placement="right">
+                <Fab color="primary" className={classes.fab} size="medium" onClick={onClick}>
+                  {icon}
+                </Fab>
+              </Tooltip>
+            ))}
         </div>
 
       </div>

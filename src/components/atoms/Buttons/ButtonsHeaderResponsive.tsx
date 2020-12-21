@@ -4,11 +4,11 @@ import Fab from "@material-ui/core/Fab"
 import Hidden from "@material-ui/core/Hidden"
 import useStyles from "./ButtonsHeaderResponsive.styles"
 
-interface Props extends ButtonProps {
-  icon: ReactChild;
+export interface ButtonsHeaderResponsiveProps extends ButtonProps {
+  icon: ReactChild,
 }
 
-export default function ButtonsHeaderResponsive({ variant, title, disabled, icon, color }: Props) {
+export default function ButtonsHeaderResponsive({ variant, title, disabled, icon, color }: ButtonsHeaderResponsiveProps) {
   const  classes = useStyles()
   return (
     <>

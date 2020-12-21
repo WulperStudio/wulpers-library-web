@@ -10,10 +10,10 @@ export interface DataRow {
 }
 
 export interface HeadCell {
-  id: string;
-  disablePadding: boolean;
+  key: string;
   label: string;
-  numeric: boolean;
+  disablePadding?: boolean;
+  numeric?: boolean;
 }
 
 export type Order = "asc" | "desc"
@@ -27,10 +27,12 @@ export interface TableHeadProps {
   orderBy: string;
   rowCount: number;
   headCells: HeadCell[];
-  style: any
+  style?: any
 }
 
 export type TableProps = {
+  selectable: boolean,
+  idTable: any,
   headCells: HeadCell[],
   dataRows: any,
   formatRows: FormatRow[],
@@ -40,6 +42,8 @@ export type FormatRow = {
   align?: "left" | "right" | "center",
   chip?: boolean,
   image?: string,
+  button?: React.ReactChild,
+  onClick?: (dataRowElement: any) => any
 }
 
 export function descendingComparator(a: any[], b: any[], orderBy: any) {

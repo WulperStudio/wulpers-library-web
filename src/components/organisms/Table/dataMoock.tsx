@@ -1,30 +1,58 @@
+import React from "react";
+import Link from "../../icons/Link";
+
 export const headCells = [
-  { id: "name", numeric: false, disablePadding: true, label: "Dessert (100g serving)" },
-  { id: "calories", numeric: true, disablePadding: false, label: "Calories" },
-  { id: "fat", numeric: true, disablePadding: false, label: "Fat (g)" },
-  { id: "carbs", numeric: true, disablePadding: false, label: "Carbs (g)" },
-  { id: "protein", numeric: true, disablePadding: false, label: "Protein (g)" }
-]
-export const dataRows = [
-  { id: 1, name: "Cupcake", calories: 305, fat: 3.7, carbs: 67, protein: 4.3, other: 500 },
-  { id: 2, name: "Donut", calories: 452, fat: 25.0, carbs: 51, protein: 4.9, other: 200 },
-  { id: 3, name: "Eclair", calories: 262, fat: 16.0, carbs: 24, protein: 6.0, other: 300 },
-  { id: 4, name: "Frozen yoghurt", calories: 159, fat: 6.0, carbs: 24, protein: 4.0, other: 500 },
-  { id: 5, name: "Gingerbread", calories: 356, fat: 16.0, carbs: 49, protein: 3.9, other: 100 },
-  { id: 6, name: "Honeycomb", calories: 408, fat: 3.2, carbs: 87, protein: 6.5, other: 200 },
-  { id: 7, name: "Ice cream sandwich", calories: 237, fat: 9.0, carbs: 37, protein: 4.3, other: 300 },
-  { id: 8, name: "Jelly Bean", calories: 375, fat: 0.0, carbs: 94, protein: 0.0, other: 200 },
-  { id: 9, name: "KitKat", calories: 518, fat: 26.0, carbs: 65, protein: 7.0, other: 100 },
-  { id: 10, name: "Lollipop", calories: 392, fat: 0.2, carbs: 98, protein: 0.0, other: 600 },
-  { id: 11, name: "Marshmallow", calories: 318, fat: 0, carbs: 81, protein: 2.0, other: 700 },
-  { id: 12, name: "Nougat", calories: 360, fat: 19.0, carbs: 9, protein: 37.0, other: 100 },
-  { id: 13, name: "Oreo", calories: 437, fat: 18.0, carbs: 63, protein: 4.0, other: 300 }
+  {key: "posttitle", label: "Posttitle", disablePadding: true},
+  {key: "status", label: "Status"},
+  {key: "publishedDate", label: "Published date"},
+  {key: "responsable", label: "Responsable"},
+  {key: "shares", label: "Shares"},
+  {key: "reach", label: "Reach"},
+  {key: "views", label: "Views"},
+  {key: "leads", label: "Leads"},
+  {key: "winned", label: "Winned"},
+  {key: "id", label: "Spread"},
 ]
 
 export const formatRows = [
-  { key: "name" },
-  { key: "calories", align: "right", chip: true },
-  { key: "fat", align: "right", image: "https://material-ui.com/static/images/avatar/1.jpg" },
-  { key: "carbs", align: "right" },
-  { key: "protein", align: "right" }
+  {key: "posttitle", align: "center", disablePadding: true},
+  {key: "status", align: "center", chip: true},
+  {key: "publishedDate", align: "center"},
+  {key: "responsable", align: "center", image: "image"},
+  {key: "shares", align: "center"},
+  {key: "reach", align: "center"},
+  {key: "views", align: "center"},
+  {key: "leads", align: "center"},
+  {key: "winned", align: "center"},
+  {key: "id", align: "center", button: <Link />, onClick:function (id: any){ alert(id)} },
 ]
+
+export const dataRows = [
+  {
+    id: 1,
+    posttitle:"Flipp, la aplicacion mas increible de todos los tiempos llego a Brasil",
+    status:"Drafts",
+    publishedDate:"10/04/20",
+    responsable:"Lourdes Sanchez",
+    shares:"1500",
+    reach:"15k",
+    views:"150k",
+    leads:"8k",
+    winned:"2k",
+    image: "https://material-ui.com/static/images/avatar/1.jpg",
+  },
+  {
+    id: 2,
+    posttitle:"Flipp, la aplicacion mas increible de todos los tiempos llego a Brasil",
+    status:"Drafts",
+    publishedDate:"10/04/20",
+    responsable:"Lourdes Sanchez",
+    shares:"1500",
+    reach:"15k",
+    views:"150k",
+    leads:"8k",
+    winned:"2k",
+    image: "https://material-ui.com/static/images/avatar/2.jpg",
+  },
+]
+

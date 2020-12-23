@@ -42,7 +42,7 @@ export const BlogVariant1 = createMuiTheme({
   ...fontsPoppins,
   palette: {
     background: {
-      default: "#FDFDFD"
+      default: "#F6F7FB"
     },
     text: {
       primary: "#374A59"

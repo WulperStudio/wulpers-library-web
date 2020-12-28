@@ -31,11 +31,13 @@ export interface TableHeadProps {
 }
 
 export type TableProps = {
+  loading?: boolean,
   selectable: boolean,
   idTable: any,
   headCells: HeadCell[],
   dataRows: any,
   formatRows: FormatRow[],
+  imagesPath?: string
 }
 export type FormatRow = {
   key: string,

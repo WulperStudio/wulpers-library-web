@@ -5,7 +5,7 @@ import {ThemeProvider} from "@material-ui/core/styles"
 import CssBaseline from "@material-ui/core/CssBaseline"
 import useStyles from "./Admin.styles"
 import NavBar, {navBarConfigType} from "../../molecules/NavBar";
-import TwoColumnsFullWidth from "../../containers/TwoColumnsFullWidth";
+import FullWidth from "../../containers/TwoColumnsFullWidth";
 
 type Props = {
   title: string,
@@ -40,7 +40,7 @@ export default function AdminTheme({
         </div>
       )}
       {loginView && (
-        <TwoColumnsFullWidth innerSecondary={innerSecondary}>{children}</TwoColumnsFullWidth>
+        <FullWidth innerSecondary={innerSecondary}>{children}</FullWidth>
       )}
     </ThemeProvider>
   )

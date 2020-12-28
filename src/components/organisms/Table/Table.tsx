@@ -3,21 +3,32 @@ import Table from "@material-ui/core/Table"
 import TableBody from "@material-ui/core/TableBody"
 import TableContainer from "@material-ui/core/TableContainer"
 import TablePagination from "@material-ui/core/TablePagination"
+import TableRow from "@material-ui/core/TableRow"
+import TableCell from "@material-ui/core/TableCell"
 import Paper from "@material-ui/core/Paper"
 import useStyles from "./Table.styles"
-import { Order, TableProps, getComparator, stableSort } from "./Table.utils"
+import {Order, TableProps, getComparator, stableSort} from "./Table.utils"
 import TableHead from "../../molecules/TableHead/TableHead"
-import TableRow from "../../molecules/TableRow/TableRow"
+import EnhancedTableRow from "../../molecules/TableRow/TableRow"
+import Skeleton from '@material-ui/lab/Skeleton';
 
 EnhancedTable.defaultProps = {
   selectable: true
 }
 
 //TODO: merge headCells and formatRows in formatTable and change dataRows by dataTable
-export default function EnhancedTable({ selectable, idTable, headCells, formatRows, dataRows }: TableProps) {
+export default function EnhancedTable({
+                                        loading,
+                                        selectable,
+                                        idTable,
+                                        headCells,
+                                        formatRows,
+                                        dataRows,
+                                        imagesPath
+                                      }: TableProps) {
   const classes = useStyles()
   const [order, setOrder] = React.useState<Order>("asc")
-  const [orderBy, setOrderBy] = React.useState("calories")
+  const [orderBy, setOrderBy] = React.useState<string>("")
   const [selected, setSelected] = React.useState<any>([])
   const [page, setPage] = React.useState(0)
   const [rowsPerPage, setRowsPerPage] = React.useState(10)
@@ -37,7 +48,7 @@ export default function EnhancedTable({ selectable, idTable, headCells, formatRo
     setSelected([])
   }
 
-  const handleClick = (event: React.MouseEvent<unknown>, name: string) => {
+  const handleClick = (event: React.FormEvent<HTMLTableHeaderCellElement>, name: string) => {
 
     const selectedIndex = selected.indexOf(name)
     let newSelected: string[] = []
@@ -54,7 +65,6 @@ export default function EnhancedTable({ selectable, idTable, headCells, formatRo
         selected.slice(selectedIndex + 1)
       )
     }
-    console.log(">>>handleClick", newSelected)
     setSelected(newSelected)
   }
 
@@ -69,7 +79,7 @@ export default function EnhancedTable({ selectable, idTable, headCells, formatRo
 
   const isSelected = (name: string) => selected.indexOf(name) !== -1
 
-  const emptyRows = rowsPerPage - Math.min(rowsPerPage, dataRows.length - page * rowsPerPage)
+  const emptyRows = !loading ? rowsPerPage - Math.min(rowsPerPage, dataRows.length - page * rowsPerPage) : 0
 
   return <div className={classes.root}>
     <Paper className={classes.paper}>
@@ -90,38 +100,50 @@ export default function EnhancedTable({ selectable, idTable, headCells, formatRo
             onSelectAllClick={handleSelectAllClick}
             // @ts-ignore TODO: The expected type comes from property 'onRequestSort' which is declared here on type 'IntrinsicAttributes & TableHeadProps'
             onRequestSort={handleRequestSort}
-            rowCount={dataRows.length}
+            rowCount={dataRows ? dataRows.length : 0}
             headCells={headCells}
           />
-
-          <TableBody>
-            {stableSort(dataRows, getComparator(order, orderBy))
-              .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-              .map((row: any, index: number) => {
-                // @ts-ignore
-                const dataRowKey = row[idTable]
-                return <TableRow
-                  key={index.toString()}
-                  isItemSelected={isSelected(dataRowKey)}
-                  index={index}
-                  formatRows={formatRows}
-                  dataRow={row}
-                  isCheckbox={true}
-                  dataRowKey={dataRowKey}
-                  handleClick={handleClick}
-                />
-              })}
-            {/*emptyRows > 0 && <TableRow style={{ height: 53 * emptyRows }}>
-              <TableCell colSpan={6}/>
-            </TableRow>*/}
-          </TableBody>
+          {loading && ([...Array(10)].map((x, key) =>
+            <TableRow key={key}>
+              {[...Array(headCells.length + 1)].map((x, key) => (
+                <TableCell key={key}>
+                  <Skeleton/>
+                </TableCell>
+              ))}
+            </TableRow>
+          ))}
+          {!loading && (
+            <TableBody>
+              {stableSort(dataRows, getComparator(order, orderBy))
+                .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+                .map((row: any, index: number) => {
+                  const dataRowKey = row[idTable]
+                  return <EnhancedTableRow
+                    key={index.toString()}
+                    isItemSelected={isSelected(dataRowKey)}
+                    index={index}
+                    formatRows={formatRows}
+                    dataRow={row}
+                    isCheckbox={true}
+                    dataRowKey={dataRowKey}
+                    handleClick={handleClick}
+                    imagesPath={imagesPath}
+                  />
+                })}
+              {[...Array(emptyRows)].map((x, key) =>
+                <TableRow key={key} style={{height: 53}}>
+                  <TableCell colSpan={headCells.length + 1}/>
+                </TableRow>
+              )}
+            </TableBody>
+          )}
         </Table>
       </TableContainer>
 
       <TablePagination
         rowsPerPageOptions={[5, 10, 25]}
         component="div"
-        count={dataRows.length}
+        count={dataRows ? dataRows.length : 0}
         rowsPerPage={rowsPerPage}
         page={page}
         onChangePage={handleChangePage}

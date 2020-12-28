@@ -30,7 +30,7 @@ const useStyles = makeStyles((theme: Theme) =>
       }
     },
     tableContainer: {
-      maxHeight: "85vh",
+      maxHeight: "80vh",
     },
   })
 )

@@ -8,7 +8,9 @@ import {FormatRow} from "../../organisms/Table"
 import useStyles from "./Table.styles"
 import Fab from "@material-ui/core/Fab"
 
-type Props = {
+const jp = require('jsonpath');
+
+type TableRowProps = {
   isItemSelected: boolean,
   index: number,
   formatRows: FormatRow[],
@@ -16,7 +18,11 @@ type Props = {
   dataRowKey: string,
   dataRow: any,
   key: string,
-  handleClick(event: React.MouseEvent<unknown>, name: string): any
+  handleClick(event: React.FormEvent<HTMLTableHeaderCellElement>, name: string): void,
+  imagesPath?: string
+}
+EnhancedTableRow.defaultProps = {
+  imagesPath: ""
 }
 
 export default function EnhancedTableRow({
@@ -26,8 +32,9 @@ export default function EnhancedTableRow({
                                            isCheckbox,
                                            dataRowKey,
                                            handleClick,
-                                           dataRow
-                                         }: Props) {
+                                           dataRow,
+                                           imagesPath
+                                         }: TableRowProps) {
   const labelId = `enhanced-table-checkbox-${index}`
   const classes = useStyles()
   return (
@@ -52,13 +59,12 @@ export default function EnhancedTableRow({
 
       {formatRows.map(({key, image, chip, align, button, onClick}, i: number) => {
         // @ts-ignore
-        const data = dataRow[key]
+        const data = jp.value(dataRow, `$.${key}`)
         return (
           <TableCell
             key={i}
             align={align}
-            onClick={(event) => button === undefined ? handleClick(event, dataRowKey) : false}>
-
+          >
             {(button !== undefined) && (
               <Fab color="inherit" size="small" className={classes.fabTable} onClick={() => {
                 onClick ? onClick(dataRowKey) : false
@@ -68,14 +74,17 @@ export default function EnhancedTableRow({
             )}
 
             {(image !== undefined && button === undefined) && (
-              <Chip className={classes.chipAvatar} label={data} avatar={<Avatar alt={data} src={dataRow[image]}/>}/>
+              <Chip className={classes.chipAvatar} label={data}
+                    avatar={<Avatar alt={data} src={imagesPath + jp.value(dataRow, `$.${image}`)}/>}/>
             )}
 
             {(chip && image === undefined && button === undefined) && (
               <Chip label={data} color="secondary" size="small"/>
             )}
 
-            {(!image && !chip && !button) && data}
+            {(!image && !chip && !button) && <span onClick={() => {
+              onClick ? onClick(dataRowKey) : false
+            }}>{data}</span>}
 
           </TableCell>
         )

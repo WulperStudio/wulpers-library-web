@@ -15,44 +15,56 @@ export const headCells = [
 ]
 
 export const formatRows = [
-  {key: "posttitle", align: "center", disablePadding: true},
+  {
+    key: "posttitle", align: "center", disablePadding: true, onClick: function (id: any) {
+      alert("Edit id: " + id)
+    }
+  },
   {key: "status", align: "center", chip: true},
   {key: "publishedDate", align: "center"},
-  {key: "responsable", align: "center", image: "image"},
+  {key: "responsable", align: "center", image: "image[0].formats.small"},
   {key: "shares", align: "center"},
   {key: "reach", align: "center"},
   {key: "views", align: "center"},
   {key: "leads", align: "center"},
   {key: "winned", align: "center"},
-  {key: "id", align: "center", button: <Link />, onClick:function (id: any){ alert(id)} },
+  {
+    key: "id", align: "center", button: <Link/>, onClick: function (id: any) {
+      alert("Action id: " + id)
+    }
+  },
 ]
 
 export const dataRows = [
   {
     id: 1,
-    posttitle:"Flipp, la aplicacion mas increible de todos los tiempos llego a Brasil",
-    status:"Drafts",
-    publishedDate:"10/04/20",
-    responsable:"Lourdes Sanchez",
-    shares:"1500",
-    reach:"15k",
-    views:"150k",
-    leads:"8k",
-    winned:"2k",
-    image: "https://material-ui.com/static/images/avatar/1.jpg",
+    posttitle: "Flipp, la aplicacion mas increible de todos los tiempos llego a Brasil",
+    status: "Drafts",
+    publishedDate: "10/04/20",
+    responsable: "Lourdes Sanchez",
+    shares: "1500",
+    reach: "15k",
+    views: "150k",
+    leads: "8k",
+    winned: "2k",
+    image: [{
+      formats: {small: "https://material-ui.com/static/images/avatar/1.jpg"}
+    }],
   },
   {
     id: 2,
-    posttitle:"Flipp, la aplicacion mas increible de todos los tiempos llego a Brasil",
-    status:"Drafts",
-    publishedDate:"10/04/20",
-    responsable:"Lourdes Sanchez",
-    shares:"1500",
-    reach:"15k",
-    views:"150k",
-    leads:"8k",
-    winned:"2k",
-    image: "https://material-ui.com/static/images/avatar/2.jpg",
+    posttitle: "Flipp, la aplicacion mas increible de todos los tiempos llego a Brasil",
+    status: "Drafts",
+    publishedDate: "10/04/20",
+    responsable: "Lourdes Sanchez",
+    shares: "1500",
+    reach: "15k",
+    views: "150k",
+    leads: "8k",
+    winned: "2k",
+    image: [{
+      formats: {small: "https://material-ui.com/static/images/avatar/2.jpg"}
+    }],
   },
 ]
 

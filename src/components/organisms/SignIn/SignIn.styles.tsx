@@ -1,4 +1,4 @@
-import { makeStyles } from "@material-ui/core/styles"
+import {makeStyles} from "@material-ui/core/styles"
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -16,7 +16,12 @@ const useStyles = makeStyles((theme) => ({
     margin: theme.spacing(3, 0, 2),
   },
   link: {
-    fontWeight: 'bolder'
+    fontWeight: 'bolder',
+    color: theme.palette.primary.main,
+    cursor: 'pointer',
+    '&:hover': {
+      textDecoration: 'underline'
+    }
   }
 }));
 

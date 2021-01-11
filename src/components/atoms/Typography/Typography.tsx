@@ -1,1 +1,2 @@
-export * from "@material-ui/core/Switch"
+export {default} from "@material-ui/core/Typography"
+export * from "@material-ui/core/Typography"

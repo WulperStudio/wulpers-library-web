@@ -4,7 +4,7 @@ import Fab from "@material-ui/core/Fab"
 import ArrowBackIcon from "@material-ui/icons/ArrowBack"
 import reactStringReplace from "react-string-replace"
 import Tooltip from "@material-ui/core/Tooltip"
-import Switch from "../../atoms/Switch"
+import Switch from "../../atoms/SwitchTable"
 import Button from "@material-ui/core/Button"
 
 export type navBarConfigType = {

@@ -1,1 +1,2 @@
-export {default} from "./Switch";
+export {default} from "./SwitchTable"
+export * from "./SwitchTable";

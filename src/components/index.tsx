@@ -1,4 +1,4 @@
-import Switch from "./atoms/Switch"
+import Switch from "./atoms/SwitchTable"
 
 export {
     Switch

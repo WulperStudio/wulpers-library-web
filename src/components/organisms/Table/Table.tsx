@@ -10,7 +10,7 @@ import useStyles from "./Table.styles"
 import {Order, TableProps, getComparator, stableSort} from "./Table.utils"
 import TableHead from "../../molecules/TableHead/TableHead"
 import EnhancedTableRow from "../../molecules/TableRow/TableRow"
-import Skeleton from '@material-ui/lab/Skeleton';
+import Skeleton from '@material-ui/lab/Skeleton'
 
 EnhancedTable.defaultProps = {
   selectable: true

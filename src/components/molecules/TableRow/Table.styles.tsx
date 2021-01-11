@@ -1,9 +1,9 @@
-import { makeStyles, Theme } from "@material-ui/core/styles"
+import {makeStyles, Theme} from "@material-ui/core/styles"
 import {backgrounds} from "../../../utils";
 
 const useStyles = makeStyles((theme: Theme) => ({
-  chipAvatar:{
-    background:"transparent"
+  chipAvatar: {
+    background: "transparent"
   },
   fabTable: {
     background: "none",
@@ -14,6 +14,15 @@ const useStyles = makeStyles((theme: Theme) => ({
       fill: backgrounds.primary
     }
   },
+  link: {
+    color: "#2F54EB",
+    textDecoration: "underline",
+    fontWeight: 600,
+    "&:hover": {
+      cursor: "pointer",
+      color: "#1b2d88",
+    }
+  }
 }))
 
 export default useStyles

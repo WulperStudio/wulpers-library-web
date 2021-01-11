@@ -7,6 +7,7 @@ import Avatar from "@material-ui/core/Avatar"
 import {FormatRow} from "../../organisms/Table"
 import useStyles from "./Table.styles"
 import Fab from "@material-ui/core/Fab"
+import {format} from "date-fns"
 
 const jp = require('jsonpath');
 
@@ -57,9 +58,12 @@ export default function EnhancedTableRow({
         </TableCell>
       )}
 
-      {formatRows.map(({key, image, chip, align, button, onClick}, i: number) => {
+      {formatRows.map(({key, image, chip, align, button, onClick, formatDate}, i: number) => {
         // @ts-ignore
-        const data = jp.value(dataRow, `$.${key}`)
+        let data = jp.value(dataRow, `$.${key}`)
+        if (formatDate) {
+          data = format(new Date(data), formatDate)
+        }
         return (
           <TableCell
             key={i}
@@ -82,9 +86,16 @@ export default function EnhancedTableRow({
               <Chip label={data} color="secondary" size="small"/>
             )}
 
-            {(!image && !chip && !button) && <span onClick={() => {
-              onClick ? onClick(dataRowKey) : false
-            }}>{data}</span>}
+            {(!image && !chip && !button) && (
+              <span
+                onClick={() => {
+                  onClick ? onClick(dataRowKey) : false
+                }}
+                className={onClick ? classes.link : ""}
+              >
+                {data}
+              </span>
+            )}
 
           </TableCell>
         )

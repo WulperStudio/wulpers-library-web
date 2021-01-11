@@ -3,11 +3,14 @@ import SideBar, {sideBarConfigType} from "../../molecules/SideBar"
 import {defaultTheme} from "../../../utils"
 import {ThemeProvider} from "@material-ui/core/styles"
 import CssBaseline from "@material-ui/core/CssBaseline"
+import Backdrop from '@material-ui/core/Backdrop';
+import CircularProgress from '@material-ui/core/CircularProgress';
+
 import useStyles from "./Admin.styles"
 import NavBar, {navBarConfigType} from "../../molecules/NavBar";
 import FullWidth from "../../containers/TwoColumnsFullWidth";
 
-type Props = {
+type AdminThemeProps = {
   title: string,
   children: ReactNode,
   sideBarConfig?: sideBarConfigType[],
@@ -15,6 +18,7 @@ type Props = {
   buttonBackOnClick?: () => any,
   loginView?: boolean,
   innerSecondary?: ReactChild,
+  loading?: boolean
 }
 
 export default function AdminTheme({
@@ -24,8 +28,9 @@ export default function AdminTheme({
                                      navBarConfig,
                                      buttonBackOnClick,
                                      loginView,
-                                     innerSecondary
-                                   }: Props): ReactElement {
+                                     innerSecondary,
+                                     loading
+                                   }: AdminThemeProps): ReactElement {
   const classes = useStyles()
   return (
     <ThemeProvider theme={defaultTheme}>
@@ -42,6 +47,11 @@ export default function AdminTheme({
       {loginView && (
         <FullWidth innerSecondary={innerSecondary}>{children}</FullWidth>
       )}
+
+      <Backdrop className={classes.backdrop} open={!!loading}>
+        <CircularProgress color="inherit"/>
+      </Backdrop>
+
     </ThemeProvider>
   )
 }

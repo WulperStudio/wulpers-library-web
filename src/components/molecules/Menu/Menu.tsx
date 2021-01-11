@@ -1,4 +1,4 @@
-import React,{ ReactNode} from "react";
+import React, {ReactNode} from "react";
 import {withStyles} from "@material-ui/core/styles";
 import Menu, {MenuProps} from "@material-ui/core/Menu";
 import MenuItem from "@material-ui/core/MenuItem";
@@ -55,9 +55,9 @@ export default function CustomizedMenus({items, button}: Props) {
         open={Boolean(anchorEl)}
         onClose={handleClose}
       >
-        {items.map((item) => (
-          <StyledMenuItem>
-            <ListItemText primary={item}/>
+        {items.map((item, index) => (
+          <StyledMenuItem key={index}>
+            <ListItemText primary={item} />
           </StyledMenuItem>
         ))}
       </StyledMenu>

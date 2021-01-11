@@ -1,4 +1,4 @@
-import { makeStyles, Theme, styled } from "@material-ui/core/styles"
+import {makeStyles, Theme, styled} from "@material-ui/core/styles"
 
 const useStyles = makeStyles((theme: Theme) => ({
   container: {
@@ -11,6 +11,10 @@ const useStyles = makeStyles((theme: Theme) => ({
     flexDirection: "column",
     justifyContent: "flex-start",
     padding: "0 32px",
+  },
+  backdrop: {
+    zIndex: theme.zIndex.drawer + 1,
+    color: '#fff',
   }
 }))
 

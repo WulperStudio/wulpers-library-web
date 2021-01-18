@@ -29,7 +29,13 @@ export const formatRows = [
   {key: "leads", align: "center"},
   {key: "winned", align: "center"},
   {
-    key: "id", align: "center", button: <Link/>, onClick: function (id: any) {
+    key: "id",
+    align: "center",
+    button: <Link/>,
+    menu: [
+      {title: "Delete", onClick: () => alert("hola")},
+      {title: "Publish", onClick: () => alert("hola")}],
+    onClick: function (id: any) {
       alert("Action id: " + id)
     }
   },

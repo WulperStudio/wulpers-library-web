@@ -8,6 +8,7 @@ import {FormatRow} from "../../organisms/Table"
 import useStyles from "./Table.styles"
 import Fab from "@material-ui/core/Fab"
 import {format} from "date-fns"
+import Menu from "../Menu";
 
 const jp = require('jsonpath');
 
@@ -58,7 +59,7 @@ export default function EnhancedTableRow({
         </TableCell>
       )}
 
-      {formatRows.map(({key, image, chip, align, button, onClick, formatDate}, i: number) => {
+      {formatRows.map(({key, image, chip, align, button, menu, onClick, formatDate}, i: number) => {
         // @ts-ignore
         let data = jp.value(dataRow, `$.${key}`)
         if (formatDate) {
@@ -69,7 +70,22 @@ export default function EnhancedTableRow({
             key={i}
             align={align}
           >
-            {(button !== undefined) && (
+            {(button !== undefined && menu !== undefined) && (
+              <Menu
+                button={
+                  <Fab
+                    color="inherit"
+                    size="medium"
+                    aria-label="edit"
+                  >
+                    {button}
+                  </Fab>
+                }
+                items={menu}
+                returnKey={dataRowKey}
+              />
+            )}
+            {(button !== undefined && menu === undefined) && (
               <Fab color="inherit" size="small" className={classes.fabTable} onClick={() => {
                 onClick ? onClick(dataRowKey) : false
               }}>
@@ -77,12 +93,12 @@ export default function EnhancedTableRow({
               </Fab>
             )}
 
-            {(image !== undefined && button === undefined) && (
+            {(image !== undefined && button === undefined && menu === undefined) && (
               <Chip className={classes.chipAvatar} label={data}
                     avatar={<Avatar alt={data} src={imagesPath + jp.value(dataRow, `$.${image}`)}/>}/>
             )}
 
-            {(chip && image === undefined && button === undefined) && (
+            {(chip && image === undefined && button === undefined && menu === undefined) && (
               <Chip label={data} color="secondary" size="small"/>
             )}
 

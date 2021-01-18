@@ -41,7 +41,7 @@ export default function EnhancedTable({
 
   const handleSelectAllClick = (event: React.ChangeEvent<HTMLInputElement>) => {
     if (event.target.checked) {
-      const newSelecteds = dataRows.map((n: any) => n.name)
+      const newSelecteds = dataRows.map((n: any) => n[idTable])
       setSelected(newSelecteds)
       return
     }

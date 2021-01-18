@@ -3,7 +3,8 @@ import {makeStyles, Theme, styled} from "@material-ui/core/styles"
 const useStyles = makeStyles((theme: Theme) => ({
   container: {
     display: "flex",
-    justifyContent: "space-between"
+    justifyContent: "space-between",
+    flexDirection: "row-reverse",
   },
   content: {
     width: "100%",
@@ -11,15 +12,12 @@ const useStyles = makeStyles((theme: Theme) => ({
     flexDirection: "column",
     justifyContent: "flex-start",
     padding: "0 32px",
-    paddingLeft: 320
+    paddingRight: "35%",
   },
   aside: {
-    height: "100vh",
+
     padding: 20,
-    display: "flex",
-    justifyContent: "flex-end",
-    alignItems: "center",
-    width: 260,
+    width: "30%",
     position: "fixed",
   }
 }))

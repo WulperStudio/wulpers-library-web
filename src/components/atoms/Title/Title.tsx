@@ -11,7 +11,7 @@ export default function Title({children}: { children: string }): ReactElement {
     <span key={match + i} className={classes.boldUnderlined}>{match}</span>
   ))
   replacedTitle = reactStringReplace(replacedTitle, /\\n/g, (match: string, i: number) => (
-    <br />
+    <br key={`br${i}`} />
   ))
   return <>{replacedTitle}</>
 }

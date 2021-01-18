@@ -10,6 +10,7 @@ import Typography from "@material-ui/core/Typography"
 import Autocomplete from '@material-ui/lab/Autocomplete'
 import {autocompleteValues} from "../../atoms/Form/Form.utils"
 import Dropzone from "../../atoms/DropZone/Dropzone"
+import SiderbarEditionTask from "../../molecules/SiderbarEditionTask"
 
 <Meta title="Containers/AsideFixed"/>
 
@@ -21,18 +22,7 @@ Description AsideFixed
 <Preview withToolbar>
   <Story name="Default">
     <AsideFixed asideContent={
-      <Menu
-        button={
-          <Fab
-            color="inherit"
-            size="medium"
-            aria-label="edit"
-          >
-            <EditIcon/>
-          </Fab>
-        }
-        items={["Insert image", "Insert video", "Insert phrase", "Insert URL", "Insert subtitle"]}
-      />
+      <SiderbarEditionTask />
     }>
       <Typography gutterBottom variant="h6" component="h2" color="primary">
         POST DESCRIPTION -> Title section

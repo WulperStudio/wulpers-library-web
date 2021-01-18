@@ -1,7 +1,7 @@
 import React from "react"
 
 export default function GroupIcon() {
-  return (<svg width="19" height="20" viewBox="0 0 19 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+  return (<svg width="24" height="24" viewBox="0 0 19 20" fill="none" xmlns="http://www.w3.org/2000/svg">
     <path d="M1.77344 1.58887H7.84419" stroke="#3D3769" strokeWidth="2" strokeLinecap="round"
           strokeLinejoin="round"/>
     <path d="M11.8914 1.58887H17.9621" stroke="#3D3769" strokeWidth="2" strokeLinecap="round"

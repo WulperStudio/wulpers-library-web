@@ -45,6 +45,7 @@ export type FormatRow = {
   chip?: boolean,
   image?: string,
   button?: React.ReactChild,
+  menu?: any,
   formatDate?: string,
   onClick?: (dataRowElement: any) => any
 }

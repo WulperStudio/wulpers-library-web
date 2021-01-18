@@ -3,38 +3,48 @@ import {withStyles} from "@material-ui/core/styles";
 import Menu, {MenuProps} from "@material-ui/core/Menu";
 import MenuItem from "@material-ui/core/MenuItem";
 import ListItemText from "@material-ui/core/ListItemText";
+import useStyles from "./Menu.styles";
+
+interface StyledMenuProps extends MenuProps {
+  orientation?: "right" | "left" | "center"
+}
 
 const StyledMenu = withStyles({
   paper: {
     width: 230,
-    marginTop: 10
+    marginTop: 10,
+    boxShadow: "0px 4px 4px 0px rgba(0, 0, 0, 0.25)",
+    borderRadius: "6px",
   }
-})((props: MenuProps) => (
+})(({orientation, ...props}: StyledMenuProps) => (
   <Menu
     elevation={0}
     getContentAnchorEl={null}
     anchorOrigin={{
       vertical: "bottom",
-      horizontal: "center"
+      horizontal: orientation || "left"
     }}
     transformOrigin={{
       vertical: "top",
-      horizontal: "center"
+      horizontal: orientation || "left"
     }}
     {...props}
   />
 ));
 
-const StyledMenuItem = withStyles((theme) => ({
-  root: {}
-}))(MenuItem);
-
-type Props = {
-  items: string[],
-  button: ReactNode
+type Items = {
+  title: string,
+  onClick: (key: any) => any
 }
 
-export default function CustomizedMenus({items, button}: Props) {
+type CustomizedMenusProps = {
+  items: Items[],
+  button: ReactNode,
+  returnKey?: string
+}
+
+export default function CustomizedMenus({items, button, returnKey}: CustomizedMenusProps) {
+  const classes = useStyles()
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
 
   const handleClick = (event: React.MouseEvent<HTMLElement>) => {
@@ -47,18 +57,22 @@ export default function CustomizedMenus({items, button}: Props) {
 
   return (
     <>
-      <div onClick={handleClick} style={{display: "inline-block"}}> {button}</div>
+      <div onClick={handleClick} style={{display:"inline-block"}}> {button}</div>
       <StyledMenu
         id="customized-menu"
         anchorEl={anchorEl}
         keepMounted
         open={Boolean(anchorEl)}
         onClose={handleClose}
+        orientation="left"
       >
-        {items.map((item, index) => (
-          <StyledMenuItem key={index}>
-            <ListItemText primary={item} />
-          </StyledMenuItem>
+        {items.map(({title, onClick}, index) => (
+          <MenuItem key={index} onClick={() => onClick ? onClick(returnKey?returnKey:title) : false}>
+            <ListItemText
+              className={classes.listItemText}
+              primary={title}
+            />
+          </MenuItem>
         ))}
       </StyledMenu>
     </>

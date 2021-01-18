@@ -1,14 +1,14 @@
 import {Meta, Story, Preview} from "@storybook/addon-docs/blocks";
 import {withKnobs, boolean} from "@storybook/addon-knobs";
 import {action} from '@storybook/addon-actions';
-import Dropzone from "./Dropzone";
+import AntdUpload from "./AntdUpload";
 
-<Meta title="Atoms/Dropzone" component={Dropzone}/>
+<Meta title="Atoms/AntdUpload" component={AntdUpload}/>
 
 # Dropzone
 
 <Preview withToolbar>
   <Story name="Dropzone">
-    <Dropzone label="Attach image"  helperText="Hola" filesLimit={2} />
+    <AntdUpload label="Attach image"  helperText="Hola"/>
   </Story>
 </Preview>

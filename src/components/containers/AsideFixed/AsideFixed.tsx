@@ -10,8 +10,8 @@ export default function AsideFixed({asideContent, children}: Props): ReactElemen
   const classes = useStyles()
   return (
     <div className={classes.container}>
-      <aside className={classes.aside}>{asideContent}</aside>
       <div className={classes.content}>{children}</div>
+      <aside className={classes.aside}>{asideContent}</aside>
     </div>
   )
 }

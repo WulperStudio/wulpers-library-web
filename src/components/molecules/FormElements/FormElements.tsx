@@ -78,7 +78,7 @@ export default function FormElements({
           onChange={e => {
             onChange ? onChange(e) : false
           }}
-          initialFiles={(value[0]?.url) ? [value[0].url] : undefined}
+          initialFiles={value ? (value[0].url ? [value[0].url]: undefined ) : undefined}
         />
       )}
     </>

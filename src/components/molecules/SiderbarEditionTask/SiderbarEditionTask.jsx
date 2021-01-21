@@ -4,8 +4,6 @@ import Card from "@material-ui/core/Card"
 import CardHeader from "@material-ui/core/CardHeader"
 import CardContent from "@material-ui/core/CardContent"
 import CardActions from "@material-ui/core/CardActions"
-import Typography from "@material-ui/core/Typography"
-import { red } from "@material-ui/core/colors"
 import DeleteIcon from "@material-ui/icons/Delete"
 import CloseIcon from "@material-ui/icons/Close"
 import Fab from "@material-ui/core/Fab"
@@ -47,8 +45,8 @@ const useStyles = makeStyles((theme: Theme) =>
 )
 
 export default function SiderbarEditionTask() {
-  const classes = useStyles()
   const [expanded, setExpanded] = React.useState(false)
+  const classes = useStyles()
 
   const handleExpandClick = () => {
     setExpanded(!expanded)
@@ -83,19 +81,16 @@ export default function SiderbarEditionTask() {
           </FormControl>
         </p>
         <p>
-        <KeyboardDatePicker
-          disableToolbar
-          variant="inline"
-          format="MM/dd/yyyy"
-          margin="normal"
-          id="date-picker-inline"
-          label="Date picker inline"
-          value={selectedDate}
-          onChange={handleDateChange}
-          KeyboardButtonProps={{
-            'aria-label': 'change date',
-          }}
-        />
+          <TextField
+            id="date"
+            label="Birthday"
+            type="date"
+            defaultValue=""
+            fullWidth
+            InputLabelProps={{
+              shrink: true,
+            }}
+          />
         </p>
         <p>
           <TextField

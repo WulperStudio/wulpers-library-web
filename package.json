@@ -2,7 +2,7 @@
   "name": "@wulpers-ui/core",
   "private": false,
   "description": "wulpers-library-web",
-  "version": "0.0.1-beta-10",
+  "version": "0.0.1-beta-11",
   "license": "0BSD",
   "main": "index.js",
   "author": "Wulpers Co.",

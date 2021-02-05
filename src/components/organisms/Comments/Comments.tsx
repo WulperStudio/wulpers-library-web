@@ -1,78 +1,56 @@
 import React, { useState } from "react"
+import Fab from "@material-ui/core/Fab"
 import CommentsIcon from "../../icons/Comments"
 import CancelIcon from "../../icons/Cancel"
-import { makeStyles } from "@material-ui/core/styles"
-import Fab from "@material-ui/core/Fab"
 import Pin from "./Pin"
+import useStyles from "./Comments.styles"
 
-const useStyles = makeStyles({
-  container: {
-    position: "absolute",
-    top: 0,
-    left: 0,
-    width: "100%",
-    cursor: "cell",
-    zIndex: 99999999,
-  },
-  ButonComment: {
-    position: "fixed",
-    bottom: "24px",
-    left: "24px",
-    background: "#DE6944",
-    color: "white",
-    "&:hover": {
-      background: "#aa5338",
-    },
-    zIndex: 999999999,
-  },
-})
+type CommentsProps = {
+  initialValues: any,
+  onChange?: (type: string, values: any) => any,
+  userName?: string,
+  userImage?: string
+}
+Comments.defaultProps = {
+  initialValues: [],
+  userName: "Undefined",
+  userImage: "",
+}
 
-
-export default function App() {
+export default function Comments({
+  initialValues,
+  onChange,
+  userName,
+  userImage,
+}: CommentsProps) {
   const classes = useStyles()
   const [showComments, setShowComments] = useState(false)
   const [open, setOpen] = useState([])
   const [coordinates, setCoordinates] = useState({ x: "", y: "" })
-  const [comments, setComments] = useState([
-    {
-      x: 365,
-      y: 123,
-      messages: [
-        {
-          userName: "Remy Sharp",
-          userImage: "",
-          date: 1611367941038,
-          message: "Este es un comentario de pruebas",
-        },
-      ],
-    },
-    {
-      x: 236,
-      y: 456,
-      messages: []
-    },
-  ])
+  const [comments, setComments] = useState(initialValues)
 
-  const createMessage = (id: number, message: string) => {
-
+  const createMessage = (id: number, message: string, i:number) => {
     let updateComment = [...comments]
-    let messages = updateComment[id].messages
+    let messages = updateComment[i].messages
     const newMessage = {
-      userName: "Remy Sharp",
-      userImage: "",
-      date: Date.now(), 
-      message
+      userName: userName,
+      userImage: userImage,
+      date: Date.now(),
+      message,
+
     }
     messages.push(newMessage)
-    updateComment[id] = {
-      ...updateComment[id],
+    if (onChange) {
+      onChange("newMessage", newMessage)
+    }
+    updateComment[i] = {
+      ...updateComment[i],
       messages: messages,
     }
-    //console.log(updateComment)
     setComments(updateComment)
   }
 
-  const closeAll = () =>{
+  const closeAll = () => {
     setOpen([])
   }
 
@@ -97,17 +75,26 @@ export default function App() {
           }}
           className={classes.container}
           style={getHeight}
-          onClick={e => {
+          onClick={async e => {
             if (showComments) {
-              //let message = prompt("Add commnet");
               let newOpen = []
               newOpen[comments.length] = true
+              if (onChange) {
+                const id = await onChange("newComments", {
+                  domain: window.location.href,
+                  ...coordinates
+                })
+                if(id){
+                  setComments([...comments, { id, messages: [], ...coordinates }])
+                }
+              }else{
+                setComments([...comments, { messages: [], ...coordinates }])
+              }
               setOpen(newOpen)
-              setComments([...comments, { messages:[], ...coordinates }])
             }
           }}
         >
-          {comments.map((comment, i) => (
+          {comments.map((comment:any, i:number) => (
             <Pin
               createMessage={createMessage}
               comment={comment}

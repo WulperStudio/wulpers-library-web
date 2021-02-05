@@ -8,12 +8,7 @@ import ListItemAvatar from "@material-ui/core/ListItemAvatar"
 import Divider from "@material-ui/core/Divider"
 import Typography from "@material-ui/core/Typography"
 import Avatar from "@material-ui/core/Avatar"
-import TextField from "@material-ui/core/TextField"
-import PinIcon from "../../icons/Pin"
-import { MessageSharp } from "@material-ui/icons"
 import format from "date-fns/format";
-
-const useStyles = makeStyles({})
 
 export default function MessagesContent({
   messages
@@ -27,7 +22,7 @@ export default function MessagesContent({
               <Avatar alt={userName} src={userImage} style={{width:"32px", height:"32px"}}/>
             </ListItemAvatar>
             <ListItemText primary={userName}  />
-            <ListItemText secondary={format(new Date(date), "LLL dd, yyyy HH:mm")} style={{ textAlign: "right", fontSize:"9px"}} />
+            <ListItemText secondary={format(new Date(parseInt(date)), "LLL dd, yyyy HH:mm")} style={{ textAlign: "right", fontSize:"9px"}} />
           </ListItem>
           <Typography component="p" style={{ padding: "0 18px 18px" }}>
             {message}

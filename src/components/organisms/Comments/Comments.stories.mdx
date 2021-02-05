@@ -1,9 +1,9 @@
-import { Meta, Story, Preview } from "@storybook/addon-docs/blocks";
-import { withKnobs, boolean } from "@storybook/addon-knobs";
-import { action } from '@storybook/addon-actions';
+import { Meta, Story, Preview } from "@storybook/addon-docs/blocks"
+import { withKnobs, boolean } from "@storybook/addon-knobs"
+import { action } from "@storybook/addon-actions"
 import CssBaseline from "@material-ui/core/CssBaseline"
 import { ThemeProvider } from "@material-ui/styles"
-import Comments from "./Comments";
+import Comments from "./Comments"
 
 <Meta title="Organisms/Comments" />
 
@@ -15,6 +15,26 @@ Description SignUp
 
 <Preview withToolbar>
   <Story name="Default">
-      <Comments />
+    <Comments
+      initialValues={[
+        {
+          x: 365,
+          y: 123,
+          messages: [
+            {
+              userName: "Remy Sharp",
+              userImage: "",
+              date: 1611367941038,
+              message: "Este es un comentario de pruebas",
+            },
+          ],
+        },
+        {
+          x: 236,
+          y: 456,
+          messages: [],
+        },
+      ]}
+    />
   </Story>
 </Preview>

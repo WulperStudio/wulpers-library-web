@@ -55,10 +55,6 @@ export default function CustomFormPost({
   values,
   setValues,
 }: CustomFormPostProps) {
-  
-  useEffect(() => {
-    console.log("forms>>>", values)
-  }, [values])
 
   const addForm = (type: TypesFormElements) => {
     if (setValues) {

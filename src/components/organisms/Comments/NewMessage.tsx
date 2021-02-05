@@ -1,40 +1,10 @@
 import React, { useState } from "react"
 import { makeStyles } from "@material-ui/core/styles"
-import Popover from "@material-ui/core/Popover"
 import Button from "@material-ui/core/Button"
-import ListItem from "@material-ui/core/ListItem"
-import ListItemText from "@material-ui/core/ListItemText"
-import ListItemAvatar from "@material-ui/core/ListItemAvatar"
-import Divider from "@material-ui/core/Divider"
-import Typography from "@material-ui/core/Typography"
-import Avatar from "@material-ui/core/Avatar"
-import TextField from "@material-ui/core/TextField"
-import PinIcon from "../../icons/Pin"
+import useStyles from "./Comments.styles"
+import TextField from "../../atoms/Form/TextField"
 
-const useStyles = makeStyles({
-  textFieldRoot: {
-    padding: "0px",
-    margin: "0px",
-  },
-  cssOutlinedInput: {
-    border: "none",
-  },
-  cssOutlinedInputFocused: {
-    border: "none",
-  },
-  buttonComment: {
-    textTransform: "none",
-    background: "#B2B2B2",
-    marginRight: "10px",
-  },
-  buttonCancel: {
-    textTransform: "none",
-    borderColor: "#333333",
-    color: "#333333",
-  },
-})
-
-export default function NewMessage({ createMessage, i, closeAll }: any) {
+export default function NewMessage({ createMessage, i, closeAll, comment }: any) {
   const [message, setMessage] = useState("")
   const classes = useStyles()
   return (
@@ -65,7 +35,7 @@ export default function NewMessage({ createMessage, i, closeAll }: any) {
           color="primary"
           onClick={() => {
             if (message) {
-              createMessage(i, message)
+              createMessage(comment.id, message, i)
               setMessage("")
             }
           }}

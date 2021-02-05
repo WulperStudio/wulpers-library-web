@@ -1,35 +1,10 @@
-import React, { useState } from "react"
+import React from "react"
 import { makeStyles } from "@material-ui/core/styles"
 import Popover from "@material-ui/core/Popover"
-import ListItem from "@material-ui/core/ListItem"
-import ListItemText from "@material-ui/core/ListItemText"
-import ListItemAvatar from "@material-ui/core/ListItemAvatar"
-import Divider from "@material-ui/core/Divider"
-import Typography from "@material-ui/core/Typography"
-import Avatar from "@material-ui/core/Avatar"
 import PinIcon from "../../icons/Pin"
 import NewMessage from "./NewMessage"
 import MessagesContent from "./MessagesContent"
-
-const useStyles = makeStyles({
-  pinIcon: {
-    position: "absolute",
-    cursor: "pointer",
-    transition: "all .1s ease-in-out",
-    "& span": {
-      position: "absolute",
-      top: 4,
-      left: 4,
-      color: "white",
-      width: "20px",
-      textAlign: "center",
-      zIndex: 2,
-    },
-    "&:hover": {
-      transform: "scale(1.2)",
-    },
-  },
-})
+import useStyles from "./Comments.styles"
 
 export default function Pin({
   createMessage,
@@ -79,7 +54,7 @@ export default function Pin({
           }}
         >
           <MessagesContent messages={comment.messages} />
-          <NewMessage createMessage={createMessage} i={i} closeAll={closeAll} />
+          <NewMessage createMessage={createMessage} i={i} closeAll={closeAll} comment={comment} />
         </div>
       </Popover>
     </>

@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React from 'react'
 import FormHelperText from "@material-ui/core/FormHelperText"
 import {DropzoneArea} from 'material-ui-dropzone'
 import useStyles from "./Dropzone.styles"

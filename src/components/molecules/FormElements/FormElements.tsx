@@ -52,6 +52,7 @@ export default function FormElements({
   onChange,
 }: FormElementsProps) {
   const { label, helperText, multiline, placeholder } = ConfigElements[type]
+  console.log("value>>>",value)
   return (
     <>
       {(type === "subtitle" ||
@@ -78,7 +79,7 @@ export default function FormElements({
           onChange={e => {
             onChange ? onChange(e) : false
           }}
-          initialFiles={value ? (value[0].url ? [value[0].url]: undefined ) : undefined}
+          initialFiles={[value[0].url] || undefined }
         />
       )}
     </>

@@ -6,13 +6,13 @@ const useStyles = makeStyles(theme => ({
     outline: "none",
     transition: "border-bottom-color 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms",
     borderBottom: "1px solid rgba(0, 0, 0, 0.42)",
-    position:"relative",
+    position: "relative",
     paddingBottom: "8px",
     "&::before": {
       left: 0,
       right: 0,
       bottom: 0,
-      content: "\" \"",
+      content: '" "',
       position: "absolute",
       transform: "scaleX(0)",
       transition: "transform 200ms cubic-bezier(0.0, 0, 0.2, 1) 0ms",
@@ -23,6 +23,12 @@ const useStyles = makeStyles(theme => ({
       "&::before": {
         transform: "scaleX(1)",
       },
+    },
+  },
+  mediumEditorError: {
+    "&::before": {
+      borderBottom: "2px solid #f44336",
+      transform: "scaleX(1)",
     },
   },
 }))

@@ -2,6 +2,8 @@ import React from "react"
 import Editor from "react-medium-editor"
 import FormLabel from "../FormLabel"
 import useStyles from "./MediumEditor.styles"
+import clsx from "clsx"
+import { FormHelperText } from "@material-ui/core"
 
 export type toolbarOptions =
   | "bold"
@@ -35,6 +37,8 @@ export type MediumEditorProps = {
   onChange?: (e: any) => any,
   placeholder?: string,
   buttons?: toolbarOptions[],
+  error?: boolean,
+  helperText: string
 }
 
 MediumEditor.defaultProps = {
@@ -43,6 +47,8 @@ MediumEditor.defaultProps = {
   onChange: () => false,
   placeholder: "Type your text",
   buttons: ["bold", "italic", "underline", "anchor"],
+  error: false,
+  helperText: ""
 }
 
 export default function MediumEditor({
@@ -51,6 +57,8 @@ export default function MediumEditor({
   onChange,
   buttons,
   placeholder,
+  error,
+  helperText
 }: MediumEditorProps) {
   const classes = useStyles()
   const options = {
@@ -59,16 +67,17 @@ export default function MediumEditor({
   }
   return (
     <>
-      {label && <FormLabel size="small" component="legend">
+      {label && <FormLabel error={error} size="small" component="legend">
         {label}
       </FormLabel>}
       <Editor
-        className={classes.mediumEditor}
+        className={clsx(classes.mediumEditor,error && classes.mediumEditorError)}
         tag="div"
         options={options}
         text={value}
         onChange={onChange}
       />
+      {helperText && <FormHelperText error={error}>{helperText}</FormHelperText>}
     </>
   )
 }

@@ -2,7 +2,7 @@
   "name": "@wulpers-ui/core",
   "private": false,
   "description": "wulpers-library-web",
-  "version": "0.0.1-beta-13",
+  "version": "0.0.1-beta-14",
   "license": "0BSD",
   "main": "index.js",
   "author": "Wulpers Co.",
@@ -36,7 +36,8 @@
     "react-medium-editor": "^1.8.1",
     "react-scripts": "4.0.1",
     "react-sticky": "^6.0.3",
-    "react-string-replace": "0.4.4"
+    "react-string-replace": "0.4.4",
+    "slug": "^4.0.2"
   },
   "devDependencies": {
     "@babel/cli": "7.12.10",

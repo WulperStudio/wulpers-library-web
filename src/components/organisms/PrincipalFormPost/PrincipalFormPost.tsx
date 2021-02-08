@@ -6,12 +6,21 @@ import Typography from "../../atoms/Typography"
 import FormRow, { FormContainer } from "../../containers/FormRow"
 import slug from "slug"
 
+interface PrincipalFormPostPost {
+  values: any,
+  setValues: any,
+  errors: any,
+  setErrors: any,
+  prefixFiles?: string,
+}
+
 export default function PrincipalFormPost({
   values,
   setValues,
   errors,
   setErrors,
-}: any) {
+  prefixFiles,
+}: PrincipalFormPostPost) {
   return (
     <FormContainer>
       <FormRow>
@@ -65,8 +74,14 @@ export default function PrincipalFormPost({
               ...errors,
               image: false,
             })
-            setValues({ ...values, image: files })
+            if(values.image[0] && values.image[0].id){
+              setValues({ ...values, deleteImageId: values.image[0].id, image: files})
+            }else{
+              setValues({ ...values, image: files })
+            }
           }}
+          initialFiles={values.image}
+          prefixFiles={prefixFiles}
         />
       </FormRow>
 
@@ -93,13 +108,16 @@ export default function PrincipalFormPost({
         <MediumEditor
           label="Description"
           error={errors.content}
-          helperText={errors.content ? "Incorrect entry." : ""}
+          helperText={
+            errors.content
+              ? "Incorrect entry."
+              : "Select the text and choose the text format, bold, italic, underlined ..."
+          }
           value={values.content}
           onChange={value => {
             setErrors({ ...errors, content: false })
             setValues({ ...values, content: value })
           }}
-          helperText="Select the text and choose the text format, bold, italic, underlined ..."
         />
       </FormRow>
     </FormContainer>

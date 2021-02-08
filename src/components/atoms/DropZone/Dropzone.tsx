@@ -1,27 +1,48 @@
-import React from 'react'
+import React from "react"
 import FormHelperText from "@material-ui/core/FormHelperText"
-import {DropzoneArea} from 'material-ui-dropzone'
+import { DropzoneArea } from "material-ui-dropzone"
 import useStyles from "./Dropzone.styles"
-import PlusIcon from "../../icons/Plus";
-import clsx from "clsx";
+import PlusIcon from "../../icons/Plus"
+import clsx from "clsx"
 
 export type DropzoneProps = {
-  onChange?: (e:any) => any,
-  initialFiles?: string[],
+  onChange?: (e: any) => any,
+  initialFiles?: any,
   acceptedFiles?: string[],
   filesLimit?: number,
   error?: boolean,
   helperText?: string,
   label?: string,
-}
-Dropzone.defaultProps = {
-  initialFiles: [],
-  acceptedFiles: ['image/*'],
-  filesLimit: 1,
+  prefixFiles?: string,
 }
 
-export default function Dropzone({onChange, initialFiles, acceptedFiles, filesLimit, error, helperText, label}: DropzoneProps) {
-  const classes = useStyles();
+Dropzone.defaultProps = {
+  initialFiles: [],
+  acceptedFiles: ["image/*"],
+  filesLimit: 1,
+  prefixFiles: "",
+}
+
+export default function Dropzone({
+  onChange,
+  initialFiles,
+  acceptedFiles,
+  filesLimit,
+  error,
+  helperText,
+  label,
+  prefixFiles,
+}: DropzoneProps) {
+  const classes = useStyles()
+  let initialFilesValidated: string[] = []
+
+  if (initialFiles.length) {
+    initialFiles.forEach((image: { url?: string }) => {
+      if (image.url) {
+        initialFilesValidated.push(prefixFiles + image.url)
+      }
+    })
+  }
 
   return (
     <>
@@ -33,11 +54,16 @@ export default function Dropzone({onChange, initialFiles, acceptedFiles, filesLi
         onChange={onChange}
         filesLimit={filesLimit}
         dropzoneText=""
-        dropzoneClass={clsx(classes.DropzoneArea, error && classes.DropzoneAreaError)}
-        showAlerts={['error']}
-        initialFiles={initialFiles}
+        dropzoneClass={clsx(
+          classes.DropzoneArea,
+          error && classes.DropzoneAreaError
+        )}
+        showAlerts={["error"]}
+        initialFiles={initialFilesValidated}
       />
-      {helperText && <FormHelperText error={error}>{helperText}</FormHelperText>}
+      {helperText && (
+        <FormHelperText error={error}>{helperText}</FormHelperText>
+      )}
     </>
-  );
+  )
 }

@@ -52,7 +52,6 @@ export default function FormElements({
   onChange,
 }: FormElementsProps) {
   const { label, helperText, multiline, placeholder } = ConfigElements[type]
-  console.log("value>>>",value)
   return (
     <>
       {(type === "subtitle" ||

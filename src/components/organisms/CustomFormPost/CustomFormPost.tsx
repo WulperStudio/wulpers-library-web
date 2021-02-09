@@ -14,28 +14,24 @@ import { validateUrl, validateYoutubeUrl } from "./CustomFormPost.utils"
 import useStyles from "./CustomFormPost.style"
 
 export type CustomFormPostProps = {
-  onChange: (e: any) => any,
   values: FormElementsProps[],
   setValues?: any,
   title?: string,
+  prefixFiles?: string,
 }
 
 export function ValidateForm(jsonObj: FormElementsProps[]) {
   let values = [...jsonObj]
   let errors = false
   for (let i = 0; i < values.length; i++) {
-    if (
-      values[i].type === "subtitle" ||
-      values[i].type === "phrase" ||
-      values[i].type === "image"
-    ) {
+    if (values[i].type === "subtitle" || values[i].type === "phrase") {
       if (!values[i].value) {
         values[i].error = true
         errors = true
       }
     }
-    if (values[i].type === "url") {
-      if (values[i].value === "" || !validateUrl(values[i].value)) {
+    if (values[i].type === "image") {
+      if (!values[i].value.length) {
         values[i].error = true
         errors = true
       }
@@ -51,12 +47,13 @@ export function ValidateForm(jsonObj: FormElementsProps[]) {
 }
 
 export default function CustomFormPost({
-  onChange,
   title,
   values,
   setValues,
+  prefixFiles,
 }: CustomFormPostProps) {
   const classes = useStyles()
+
   const addForm = (type: TypesFormElements) => {
     if (setValues) {
       setValues([
@@ -73,7 +70,7 @@ export default function CustomFormPost({
 
   const removeForm = (id: number) => {
     if (setValues) {
-      setValues(values.filter(v=> v.id!==id))
+      setValues(values.filter(v => v.id !== id))
     }
   }
 
@@ -101,7 +98,6 @@ export default function CustomFormPost({
         { title: "Insert image", onClick: () => addForm("image") },
         { title: "Insert video", onClick: () => addForm("video") },
         { title: "Insert phrase", onClick: () => addForm("phrase") },
-        { title: "Insert URL", onClick: () => addForm("url") },
         { title: "Insert subtitle", onClick: () => addForm("subtitle") },
       ]}
     />
@@ -133,7 +129,9 @@ export default function CustomFormPost({
                     className={classes.buttonDelete}
                     color="inherit"
                     size="small"
-                    onClick={()=>{removeForm(i)}}
+                    onClick={() => {
+                      removeForm(i)
+                    }}
                   >
                     <Cancel />
                   </Fab>
@@ -144,14 +142,10 @@ export default function CustomFormPost({
           >
             <FormElements
               {...item}
-              onChange={(e: any) => {
-                if (item.type !== "image") {
-                  updateForm(item.id, "error", false)
-                  updateForm(item.id, "value", e.target.value)
-                } else if (e.length) {
-                  updateForm(item.id, "error", false)
-                  updateForm(item.id, "value", e[0])
-                }
+              prefixFiles={prefixFiles}
+              onChange={(value: any) => {
+                updateForm(item.id, "error", false)
+                updateForm(item.id, "value", value)
               }}
             />
           </FormRow>

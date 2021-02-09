@@ -1,8 +1,13 @@
 import React from "react"
 import TextField from "../../atoms/Form/TextField"
 import Dropzone from "../../atoms/DropZone"
+import MediumEditor from "../../atoms/MediumEditor"
 
-export type TypesFormElements = "subtitle" | "image" | "video" | "url" | "phrase"
+export type TypesFormElements =
+  | "subtitle"
+  | "image"
+  | "video"
+  | "phrase"
 
 export type FormElementsProps = {
   id: number,
@@ -10,6 +15,7 @@ export type FormElementsProps = {
   value: any,
   type: TypesFormElements,
   onChange?: (e?: any) => any,
+  prefixFiles?: string,
 }
 
 export const ConfigElements = {
@@ -31,12 +37,6 @@ export const ConfigElements = {
     multiline: false,
     placeholder: "https://www.youtube.com",
   },
-  url: {
-    label: "Url",
-    helperText: "Incorrect entry.",
-    multiline: false,
-    placeholder: "https://",
-  },
   phrase: {
     label: "Paragraph",
     helperText: "Incorrect entry.",
@@ -50,14 +50,12 @@ export default function FormElements({
   value,
   type,
   onChange,
+  prefixFiles
 }: FormElementsProps) {
   const { label, helperText, multiline, placeholder } = ConfigElements[type]
   return (
     <>
-      {(type === "subtitle" ||
-        type === "phrase" ||
-        type === "url" ||
-        type === "video") && (
+      {(type === "subtitle" || type === "video") && (
         <TextField
           label={label}
           error={error}
@@ -66,8 +64,17 @@ export default function FormElements({
           multiline={multiline}
           rows={multiline ? 4 : 1}
           value={value}
-          onChange={onChange ? onChange : undefined}
+          onChange={(e)=> onChange ? onChange(e.target.value) : false}
           placeholder={placeholder}
+        />
+      )}
+      {type === "phrase" && (
+        <MediumEditor
+          label={label}
+          error={error}
+          helperText={error ? helperText : "Select the text and choose the text format, bold, italic, underlined ..."}
+          value={value}
+          onChange={(value) => onChange ? onChange(value) : false}
         />
       )}
       {type === "image" && (
@@ -75,10 +82,9 @@ export default function FormElements({
           label={label}
           error={error}
           helperText={error ? helperText : ""}
-          onChange={e => {
-            onChange ? onChange(e) : false
-          }}
-          initialFiles={[value[0].url] || undefined }
+          onChange={files => onChange ? onChange(files) : false}
+          initialFiles={value}
+          prefixFiles={prefixFiles}
         />
       )}
     </>

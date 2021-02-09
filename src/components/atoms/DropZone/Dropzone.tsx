@@ -35,9 +35,8 @@ export default function Dropzone({
 }: DropzoneProps) {
   const classes = useStyles()
   let initialFilesValidated: string[] = []
-
   if (initialFiles.length) {
-    initialFiles.forEach((image: { url?: string }) => {
+    initialFiles.forEach((image: any) => {
       if (image.url) {
         initialFilesValidated.push(prefixFiles + image.url)
       }

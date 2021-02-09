@@ -1,0 +1,14 @@
+import {Meta, Story, Preview} from "@storybook/addon-docs/blocks";
+import {withKnobs, text} from "@storybook/addon-knobs";
+import {action} from '@storybook/addon-actions';
+import Player from "./Player";
+
+<Meta title="Atoms/Player" component={Player}/>
+
+# Dropzone
+
+<Preview withToolbar>
+  <Story name="Player">
+    <Player url={text("url", "https://www.youtube.com/watch?v=-28dS9_oVbA&ab_channel=Wulpers")} />
+  </Story>
+</Preview>

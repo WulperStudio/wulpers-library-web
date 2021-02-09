@@ -37,7 +37,7 @@ export default function Comments({
       userImage: userImage,
       date: Date.now(),
       message,
-
+      comment:id,
     }
     messages.push(newMessage)
     if (onChange) {

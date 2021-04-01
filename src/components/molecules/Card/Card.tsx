@@ -8,6 +8,7 @@ import Quantity from "../../atoms/Quantity/Quantity"
 type QuantityProp = {
   title: string,
   detail: string | number,
+  type?: string
 }
 
 type Props = {
@@ -31,7 +32,7 @@ export default function SimpleCard({ title, quantities, avatar, action }: Props)
         title={title}
       />
       <div className={classes.container}>
-        {quantities.map(({ title, detail }) => (
+        {quantities.map(({ title, detail, type }) => (
           <Quantity title={title} detail={detail}/>
         ))}
       </div>

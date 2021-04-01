@@ -1,0 +1,21 @@
+import { Meta, Story, Preview } from "@storybook/addon-docs/blocks"
+import { text } from "@storybook/addon-knobs"
+import { action } from "@storybook/addon-actions"
+import HeaderLandings from "./HeaderLandings"
+import Landing from "../../templates/Landing"
+
+<Meta title="Landing/Header" />
+
+## Header Landings
+
+<Preview withToolbar>
+  <Story name="Default">
+    <Landing>
+      <HeaderLandings 
+        backgroundSrc={text("backgroundSrc","https://previews.dropbox.com/p/thumb/ABFcFdJXXSq5_ULx7v3dOnaavbcCH1tjof4OrUlWq84rsRbKeKfuByRUt2ciZorYqDvVASN1KgXkm_FwPci6319LCYUo3Fbjrg2ukYCEsuZQ-VmaIBYFr37u1x9cECDQnwaYz5F3yzOCX5F-um2lr1IKkD60pqWNhXCE3XsoFgs9TgqpfcQHcdDqMMtZVDRxwG-gE-n4oufG6dh69qPhGw5UwMKauy7aLfv0YCzrtpUKrNoA6D1T8UoqFZYWt-eNPEWFzXBOmk-7OZehPJnpSq38RNbqlXRbK7sy9JYCI6tUakBCjryA-NFakp-1GYzvYrZyhOX6VJ6xzbsXlDBv1KFgAmFqvn3d75Z6YwDc49gRuQ/p.png")}
+        logoSrc={text("logoSrc","https://previews.dropbox.com/p/thumb/ABFO-BCk0H6tORhqFJtPZpxDFA6q-uBuAOMmZP6ftVsQCYV83WJnFN2-Z7_dfW0Xeg_t4t2JDCJvNnMBwkc3XpLCgRZAY0rP0wESyuhpUxC9RYwTUE1aK19yxvwlloNxYzLqZtvp9a_RsQVzVnYsyZZeQJz4S-BQGGDfhIqOi8q5xqNBGCZeliuOasKGgByAToHrMPZllLDDMD6s7VSsdHKYf3yqknI47GVftqyUcsrxC_8BNG47nsPDIXzvM3HFIj0z-UIhQe1JMjfmVl_-CSzOjyxDq43cLV4qV6dRCrVwMoBiH61bD-59OcA9nO7JnRKAjphtwRn8u7EgiVod9fDIF02o767N8YnscQlCo43Igg/p.png")}
+        title={text("title", "Llevando excelencia a cada planta")}
+      />
+    </Landing>
+  </Story>
+</Preview>

@@ -1,4 +1,5 @@
 import React from "react"
+// @ts-ignore
 import Editor from "react-medium-editor"
 import FormLabel from "../FormLabel"
 import useStyles from "./MediumEditor.styles"
@@ -67,7 +68,7 @@ export default function MediumEditor({
   }
   return (
     <>
-      {label && <FormLabel error={error} size="small" component="legend">
+      {label && <FormLabel error={error} size="small">
         {label}
       </FormLabel>}
       <Editor

@@ -1,5 +1,5 @@
 import React from "react"
-import { makeStyles, Theme, createStyles } from "@material-ui/core/styles"
+import { makeStyles, createStyles } from "@material-ui/core/styles"
 import Card from "@material-ui/core/Card"
 import CardHeader from "@material-ui/core/CardHeader"
 import CardContent from "@material-ui/core/CardContent"
@@ -14,7 +14,7 @@ import FormControl from "@material-ui/core/FormControl"
 import InputLabel from "@material-ui/core/InputLabel"
 import TextField from "./../../atoms/Form/TextField"
 
-const useStyles = makeStyles((theme: Theme) =>
+const useStyles = makeStyles(() =>
   createStyles({
     root: {
       boxShadow: "0px 4px 4px 0px rgba(0, 0, 0, 0.25)",

@@ -1,15 +1,15 @@
 import React from "react"
 import ToggleButton from "@material-ui/lab/ToggleButton"
 import ToggleButtonGroup from "@material-ui/lab/ToggleButtonGroup"
-import useStyles from "./ SwitchTable.styles";
+import useStyles from "./ SwitchTable.styles"
 import Table from "../../icons/Table"
 import Group from "../../icons/Group"
 
 export type SwitchTableProps = {
-  onChange: (props: any) => any
+  onChange: any
 }
 
-export default function SwitchTable({onChange}: SwitchTableProps) {
+export default function SwitchTable({ onChange }: SwitchTableProps) {
   const classes = useStyles()
   const [alignment, setAlignment] = React.useState("table")
 
@@ -31,12 +31,12 @@ export default function SwitchTable({onChange}: SwitchTableProps) {
     >
       <ToggleButton value="table" className={classes.left}>
         <div className={classes.fab}>
-          <Table/>
+          <Table />
         </div>
       </ToggleButton>
       <ToggleButton value="cards" className={classes.right}>
         <div className={classes.fab}>
-          <Group/>
+          <Group />
         </div>
       </ToggleButton>
     </ToggleButtonGroup>

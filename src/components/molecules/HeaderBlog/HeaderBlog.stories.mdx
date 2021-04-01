@@ -1,0 +1,85 @@
+import { Meta, Story, Preview } from "@storybook/addon-docs/blocks"
+import { select } from "@storybook/addon-knobs"
+import { action } from "@storybook/addon-actions"
+import HeaderBlog from "./HeaderBlog"
+import FilterIcon from "../../icons/Filter"
+
+<Meta title="Molecules/HeaderBlog" />
+
+## HeaderBlog
+
+<Preview withToolbar>
+  <Story name="Default">
+    <HeaderBlog
+      navBarConfig={[
+        {
+          type: "Submenu",
+          items: [
+            { title: "Business", onClick: () => alert("Business") },
+            { title: "AgTech", onClick: () => alert("AgTech") },
+            { title: "FinTech", onClick: () => alert("FinTech") },
+            { title: "AdTech", onClick: () => alert("AdTech") },
+          ],
+        },
+        {
+          type: "separation",
+        },
+        {
+          type: "Button",
+          title: "Favourites",
+          onClick: () => alert("hola"),
+          style: "primary-outlined",
+        },
+        {
+          type: "Button",
+          title: "Share link",
+          onClick: () => alert("hola"),
+          style: "secondary-contained",
+        },
+        {
+          type: "Favourites",
+          onClick: () => alert("hola"),
+          style: "secondary-contained",
+        },
+      ]}
+      logo="https://boola-news-admin.herokuapp.com/uploads/Group_715_9d0f8b67ac.png"
+      links={[
+        {
+          text: "Business",
+          link: "#",
+          onClick: () => alert("hola"),
+        },
+        {
+          text: "AgTech",
+          link: "#",
+          onClick: () => alert("hola"),
+        },
+        {
+          text: "FinTech",
+          link: "#",
+          onClick: () => alert("hola"),
+        },
+        {
+          text: "AdTech",
+          link: "#",
+          onClick: () => alert("hola"),
+        },
+        {
+          text: "Cripto",
+          link: "#",
+          onClick: () => alert("hola"),
+        },
+        {
+          text: "Industry",
+          link: "#",
+          onClick: () => alert("hola"),
+        },
+        {
+          text: "Industry 4.0",
+          link: "#",
+          onClick: () => alert("hola"),
+        },
+      ]}
+    />
+  </Story>
+</Preview>

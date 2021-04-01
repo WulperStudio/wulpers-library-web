@@ -9,6 +9,7 @@ import Fab from "@material-ui/core/Fab"
 import HeartIcon from "../../icons/Heart"
 import LinkIcon from "../../icons/Link"
 import useStyles from "./CardBlog.styles"
+import ParseHTML from "../../atoms/ParseHTML"
 
 export type CardBlogData = {
   title: string,
@@ -79,7 +80,7 @@ export default function CardBlog({variant, data, onClick}: CardBlogProps) {
             <CardContent>
               <span>{data.preTitle}</span>
               <Typography gutterBottom variant="h5" component="h2">{data.title}</Typography>
-              <p>{data.content}</p>
+              <ParseHTML html={data.content} />
             </CardContent>
           </Grid>
         </Grid>

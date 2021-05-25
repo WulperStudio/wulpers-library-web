@@ -13,13 +13,15 @@ export default function Filters(props: FiltersProps) {
 
   return (
     <div className={classes.root}>
-      <Button fullWidth={true}>Drafts (5)</Button>
+      <Button fullWidth={true} onClick={() => false}>
+        Drafts (5)
+      </Button>
       <Button fullWidth={true} className={classes.buttonActive}>
         Being reviewed (1)
       </Button>
       <Button fullWidth={true}>
         <Badge color="error" variant="dot" invisible={false}>
-        UX testing
+          UX testing
         </Badge>
       </Button>
       <Button fullWidth={true}>Published</Button>
